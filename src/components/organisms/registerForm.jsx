@@ -1,21 +1,26 @@
-import { makeStyles } from '@mui/styles';
+import { useState } from 'react';
 import ValidationTextField from '../atoms/textField';
-import DefaultButton from '../atoms/button';
 import { Grid } from '@mui/material';
-import { Link } from 'react-router-dom';
-import FormTemplate from '../templates/FormTemplate';
-
-const useStyles = makeStyles((theme) => ({
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
+import AuthFormTemplate from '../templates/AuthFormTemplate';
 
 const RegisterForm = () => {
-  const classes = useStyles();
+  const [formData, setFormData] = useState({
+    username: '',
+    email: '',
+    password: '',
+  });
+
+  const { username, email, password } = formData;
+
+  const handleChange = (event) => {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+    });
+  };
 
   return (
-    <FormTemplate>
+    <AuthFormTemplate formData={formData} formType="register">
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <ValidationTextField
@@ -27,6 +32,8 @@ const RegisterForm = () => {
             id="username"
             label="Username"
             autoFocus
+            value={username}
+            onChange={handleChange}
           />
         </Grid>
         <Grid item xs={12}>
@@ -39,6 +46,8 @@ const RegisterForm = () => {
             name="email"
             type="email"
             autoComplete="email"
+            value={email}
+            onChange={handleChange}
           />
         </Grid>
         <Grid item xs={12}>
@@ -51,20 +60,12 @@ const RegisterForm = () => {
             type="password"
             id="password"
             autoComplete="current-password"
+            value={password}
+            onChange={handleChange}
           />
         </Grid>
       </Grid>
-      <DefaultButton type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
-        Register
-      </DefaultButton>
-      <Grid container justifyContent="flex-end">
-        <Grid item>
-          <Link to="/login" variant="body2">
-            Already have an account? Log in
-          </Link>
-        </Grid>
-      </Grid>
-    </FormTemplate>
+    </AuthFormTemplate>
   );
 };
 

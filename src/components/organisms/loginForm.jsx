@@ -1,28 +1,24 @@
-import { makeStyles } from '@mui/styles';
+import { useState } from 'react';
 import ValidationTextField from '../atoms/textField';
-import DefaultButton from '../atoms/button';
-import { Grid } from '@mui/material';
-import { Link } from 'react-router-dom';
-import FormTemplate from '../templates/FormTemplate';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    height: '100vh',
-  },
-  form: {
-    width: '100%',
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
+import AuthFormTemplate from '../templates/AuthFormTemplate';
 
 const LoginForm = () => {
-  const classes = useStyles();
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
+
+  const { email, password } = formData;
+
+  const handleChange = (event) => {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+    });
+  };
 
   return (
-    <FormTemplate>
+    <AuthFormTemplate formType="login" formData={formData}>
       <ValidationTextField
         variant="outlined"
         margin="normal"
@@ -34,6 +30,8 @@ const LoginForm = () => {
         type="email"
         autoComplete="email"
         autoFocus
+        value={email}
+        onChange={handleChange}
       />
       <ValidationTextField
         variant="outlined"
@@ -45,18 +43,10 @@ const LoginForm = () => {
         type="password"
         id="password"
         autoComplete="current-password"
+        value={password}
+        onChange={handleChange}
       />
-      <DefaultButton type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
-        Log in
-      </DefaultButton>
-      <Grid container justifyContent="flex-end">
-        <Grid item>
-          <Link to="/register" variant="body2">
-            {"Don't have an account? Register"}
-          </Link>
-        </Grid>
-      </Grid>
-    </FormTemplate>
+    </AuthFormTemplate>
   );
 };
 

@@ -8,7 +8,15 @@ const DefaultButton = styled(Button)(({ theme }) => ({
   '&:hover': {
     backgroundColor: orange[600],
   },
-  margin: theme.spacing(3, 0, 2)
+  margin: theme.spacing(3, 0, 2),
 }));
 
-export default DefaultButton;
+const NavButton = styled(Button)(({ theme }) => ({
+  color: theme.palette.getContrastText(orange[400]),
+  '&:hover': {
+    backgroundColor: orange[500],
+    opacity: 0.8,
+  },
+}));
+
+export { DefaultButton, NavButton };

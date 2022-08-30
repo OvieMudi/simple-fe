@@ -1,13 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import { Provider } from 'react-redux';
 import Pages from './components/pages';
 import reportWebVitals from './reportWebVitals';
+import { store } from './app/store';
+
+import './index.css';
+import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Pages />
+    <Provider store={store}>
+      <BrowserRouter>
+        <Pages />
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );
 
