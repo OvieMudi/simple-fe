@@ -1,5 +1,4 @@
 import { makeStyles } from '@mui/styles';
-import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import RegisterForm from '../organisms/registerForm';
 import AuthHeader from '../molecules/AuthHeader';
@@ -18,7 +17,6 @@ export default function RegisterPage() {
 
   return (
     <Container component="main" maxWidth="xs">
-      <CssBaseline />
       <div className={classes.paper}>
         <AuthHeader text='Register' />
         <RegisterForm />

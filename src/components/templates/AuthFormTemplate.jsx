@@ -31,7 +31,7 @@ const AuthFormTemplate = ({ children, formData, formType }) => {
       toast.error(message);
     }
 
-    if (user?.success) {
+    if (user) {
       navigate('/products');
     }
 
@@ -40,7 +40,9 @@ const AuthFormTemplate = ({ children, formData, formType }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(formType === 'login' ? loginAction(formData) : registerAction(formData));
+    dispatch(
+      formType === 'login' ? loginAction(formData) : registerAction(formData)
+    );
   };
 
   const buttonText = formType === 'login' ? 'Login' : 'Register';

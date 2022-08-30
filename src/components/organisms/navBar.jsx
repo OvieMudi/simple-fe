@@ -7,11 +7,10 @@ import NavBarNavList from '../molecules/NavBarNavList';
 import { useTheme } from '@mui/styles';
 
 const NavBar = () => {
-  const pages = ['Desktops', 'Notebooks', 'Gadgets'];
+  const pages = ['Deals', 'Promos', 'Top Picks'];
   const theme = useTheme();
 
   return (
-    // <ThemeContext>
     <AppBar position="static" color='primary' theme={theme}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
@@ -20,7 +19,6 @@ const NavBar = () => {
         </Toolbar>
       </Container>
     </AppBar>
-    // </ThemeContext>
   );
 };
 

@@ -1,4 +1,3 @@
-import CssBaseline from '@mui/material/CssBaseline';
 import { makeStyles } from '@mui/styles';
 import { Container } from '@mui/material';
 import LoginForm from '../organisms/loginForm';
@@ -18,7 +17,6 @@ const LoginPage = () => {
 
   return (
     <Container component="main" maxWidth="xs">
-      <CssBaseline />
       <div className={classes.paper}>
        <AuthHeader text='Login' />
         <LoginForm />

@@ -10,7 +10,7 @@ import LoginPage from './login';
 import ProductsPage from './products';
 import RegisterPage from './register';
 import PrivateRoute from '../../routes/privateRoute';
-import { PRODUCTS_URL } from '../../routes/routes';
+import { LOGIN_URL, PRODUCTS_URL, REGISTER_URL } from '../../routes/routes';
 import NavBar from '../organisms/navBar';
 
 const theme = createTheme({
@@ -32,9 +32,9 @@ const Pages = () => {
         <Route exact path="/" element={<PrivateRoute />}>
           <Route exact path={PRODUCTS_URL} element={<ProductsPage />} />
         </Route>
-        <Route path="/login" exact element={<LoginPage />} />
-        <Route exact path="/register" element={<RegisterPage />} />
-        <Route path="*" element={<Navigate to="/login" replace />} />
+        <Route path={LOGIN_URL} exact element={<LoginPage />} />
+        <Route exact path={REGISTER_URL} element={<RegisterPage />} />
+        <Route path="*" element={<Navigate to={LOGIN_URL} replace />} />
       </Routes>
       <ToastContainer />
     </ThemeProvider>

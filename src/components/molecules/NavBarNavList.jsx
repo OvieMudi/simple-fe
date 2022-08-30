@@ -2,7 +2,7 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { logoutAction } from '../../features/auth/authSlice';
+import { logoutAction, reset } from '../../features/auth/authSlice';
 import { LOGIN_URL } from '../../routes/routes';
 import { NavButton } from '../atoms/button';
 
@@ -14,6 +14,7 @@ export function NavBarNavList({ pages }) {
 
   const handleLogout = () => {
     dispatch(logoutAction());
+    dispatch(reset());
     navigate(LOGIN_URL);
   };
 
@@ -23,11 +24,7 @@ export function NavBarNavList({ pages }) {
         <Box sx={{ mr: 2 }} />
         <Box sx={{ flexGrow: 1 }}>
           {pages.map((page) => (
-            <NavButton
-              key={page}
-              onClick={() => {}}
-              type="NavButton"
-            >
+            <NavButton key={page} onClick={() => {}} type="button">
               {page}
             </NavButton>
           ))}
@@ -35,11 +32,7 @@ export function NavBarNavList({ pages }) {
 
         {user && (
           <div>
-            <NavButton
-              onClick={handleLogout}
-            >
-              Logout
-            </NavButton>
+            <NavButton onClick={handleLogout}>Logout</NavButton>
           </div>
         )}
       </Toolbar>
