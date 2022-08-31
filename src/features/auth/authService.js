@@ -23,8 +23,22 @@ const loginUser = async (inputData) => {
 };
 
 const logoutUser = async () => {
-  const response = await axios.post(`${AUTH_URL}/logout`);
-  localStorage.removeItem('user');
+  const userData = JSON.parse(localStorage.getItem('user'));
+  let accessToken;
+
+  if (userData) {
+    accessToken = userData?.data?.tokens.accessToken;
+    localStorage.removeItem('user');
+  }
+  const response = await axios.post(
+    `${AUTH_URL}/logout`,
+    {},
+    {
+      headers: {
+        Authorization: accessToken ?`Bearer ${accessToken}`: undefined,
+      },
+    }
+  );
   return response.data;
 };
 
